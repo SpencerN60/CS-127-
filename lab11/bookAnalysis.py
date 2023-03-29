@@ -20,11 +20,18 @@ def analyzeBook(book):
     newWords = newStory.split()
     x = 1
     for i in newWords:
-        count[i] = x
         if i.isalpha():
-            x += 1
-        else:
-            x += 0
+            count[i] = 0
+    
+    for i in count.keys():
+        for j in newWords:
+            if i == j:
+                count[i] += 1
+
+    
+    
+        
+            
     return count
     
     
