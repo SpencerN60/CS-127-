@@ -1,3 +1,7 @@
+# Name: Spencer Ness
+# Date: 03/01/2023
+# Description: This is a guessing game that people can play against eachother or against an ai. 
+
 import random
 
 def initialChoice():
@@ -85,8 +89,21 @@ def resetGameOptions():
     player2Points = 10
     return player1Points, player2Points
 
+def instructions():
+    print("How to play:")
+    print("-------------------------------------------------")
+    print("You can play human vs human, or human vs computer")
+    print("1. A random target value will be chosen by the game")
+    print("2. Each player can choose how many of their points they want to wager each round")
+    print("3. Each player can pick how many spinners they want to spin to add their scores up to equal that target value")
+    print("4. Whichever player gets a score closest to the target value wins the round")
+    print("5. The winner gains the points that they wagered, and the loser loses the ammount of points they wagered")
+    print("6. With each player wagering points per round, whoever ends up at zero first, loses the game")
+
 def main():
     # main script running control variable
+    print("Name: Spencer Ness")
+    print("Section: B2")
     running = True
     
     # gameplay variables
@@ -98,10 +115,10 @@ def main():
 
     # Print title material here
     while running:
+        player1Points, player2Points = resetGameOptions()
         choice = initialChoice() # Asks for input to play, instructions, or quit
         if choice == "p":
             numPlayers = chooseNumPlayers()
-
             # main game loop
             while player1Points != 0 and player2Points != 0:
                 printBanner()
@@ -111,7 +128,7 @@ def main():
                 # get a target value
                 targetValue = generateTargetValue(NUM_SPINNERS, SPINNER_LOW, SPINNER_HIGH)
                 print("Your target value is: {}".format(targetValue))
-                dummy = input("Press any button to continue: ")
+                wait()
 
                 # Play against AI
                 if numPlayers == "1":
@@ -188,13 +205,13 @@ def main():
                     playerTwoDiff = abs(player2Spin - targetValue)
                     print("The total value of the spinners was: {}, and the target value was: {}".format(player2Spin,targetValue))
                     print()
-                    print("Press any button to continue")
+                    wait()
                     if playerOneDiff > playerTwoDiff:
-                        print("Player 2 won!")
+                        print("Player 2 won the round!")
                         player1Points -= p1wager
                         player2Points += p2wager
                     elif playerOneDiff < playerTwoDiff:
-                        print("Player 1 won!")
+                        print("Player 1 won the round!")
                         player1Points += p1wager
                         player2Points -= p2wager
                     else:
@@ -203,7 +220,18 @@ def main():
                     print("--End of Round--")
             
             if player1Points == 0:
-                print("Player 1 wins!")
+                print("Player 2 wins the game!")
+                
+            elif player2Points == 0:
+                print("Player 1 wins the game!")
+        elif choice == "i":
+            instructions()
+        elif choice == "q":
+            running = False
+
+
+
+
 
 
                         
