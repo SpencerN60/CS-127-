@@ -120,7 +120,7 @@ def deleteItem(item, todoList): #Done
 
     return itemFound, todoList
 
-def moveItem(item, toList, todoList):
+def moveItem(item, toList, todoList): #Done
     """This function allows the user to move an item from one List in the Dictionary of Lists to another.
 
     :param String item: The String to search for in each list.
@@ -138,7 +138,7 @@ def moveItem(item, toList, todoList):
     
     return todoList
 
-def printTODOList(todoList):
+def printTODOList(todoList): #Done
     """This function prints out the contents of the Dictionary of Lists data structure.
 
     :param Dictionary of Lists todoList: A dictionary whose keys contain the various categories the user can access. The values are lists the user can modify.
@@ -148,7 +148,10 @@ def printTODOList(todoList):
     # holds for that key on a single line on the screen.
     # ex: todo: ['laundry', 'dishes']
     # Return None (1 pt.)
-
+    for keys in todoList:
+        print(keys + ": ", end = "")
+        print(todoList[keys])
+            
     return None
 
 def runApplication(todoList):
@@ -250,6 +253,7 @@ def main():
 # if __name__ == "__main__":
 #     main()
 
-d1 = {"spencer": ["pog", "dec", "lights"], "droege":["goat", "short", "fun"]}
+d1 = {"spencer": ["pog", "dec", "lights"], "droege":["goat", "short", "fun"], "mater":["poggy", "ripped", "nice"]}
 
 
+printTODOList(d1)
