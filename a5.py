@@ -167,12 +167,22 @@ def runApplication(todoList):
         choice = input("APPLICATION MENU: [a]dd to backlog, [m]ove item, [d]elete item, [s]ave list, or [q]uit to main menu?: ")
         print()
 
-        if choice == "a":
+        if choice == "a": #Done
+            insert = input("Input an item to add to the backlog: ")
+            whichList = input("Which list would you like to add this to: ")
+            addItem(insert, whichList, todoList)
+            printTODOList(todoList)
             # TODO: Prompt the user to enter an item, and take in that input as a string. Call the addItem function
             # to add the item to the 'backlog' key's corresponding list. Finally, use the printTODOList function
             # to print the todoList data structure. (1 pt.)
             pass
         elif choice == "m":
+            populated = False
+            for keys in todoList:
+                if len(todoList[keys]) != 0:
+                    populated = True
+            if populated == False:
+                print("ERROR: No items to move")
             # TODO: Check to see if any of the lists in the data structure have items in them. If all of the lists in
             # the dictionary are empty, print an error message that states 'No items to move!' or something similar.
             # If at least one of the lists in the dictionary has an item in it, do the following:
@@ -250,10 +260,10 @@ def main():
             print("Please enter [n], [l], or [q]...")
             print()
 
-# if __name__ == "__main__":
-#     main()
+if __name__ == "__main__":
+    main()
 
-d1 = {"spencer": ["pog", "dec", "lights"], "droege":["goat", "short", "fun"], "mater":["poggy", "ripped", "nice"]}
+# d1 = {"spencer": ["pog", "dec", "lights"], "droege":["goat", "short", "fun"], "mater":["poggy", "ripped", "nice"]}
 
 
-printTODOList(d1)
+# printTODOList(d1)
