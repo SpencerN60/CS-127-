@@ -49,7 +49,7 @@ def loadList():
     
     return todoList
 
-def checkItem(item, todoList):
+def checkItem(item, todoList): #DONE
     """This function iterates through all the keys in the dictionary, and checks each list to see if a key is present.
 
     :param String item: The String to search for in each list.
@@ -73,7 +73,7 @@ def checkItem(item, todoList):
     
     return itemFound, keyName, index
 
-def addItem(item, toList, todoList):
+def addItem(item, toList, todoList): #DONE
     """This function allows the user to add an item to a specific list in the todoList data structure.
 
     :param String item: The String to search for in each list.
@@ -81,6 +81,11 @@ def addItem(item, toList, todoList):
     :param Dictionary of Lists todoList: A dictionary whose keys contain the various categories the user can access. The values are lists the user can modify.
     :return Dictionary of Lists: A dictionary whose keys contain the various categories the user can access. The values are lists the user can modify.
     """
+    itemFound, keyName, index = checkItem(item, todoList)
+    if itemFound == False:
+        todoList[toList].append(item)
+    else:
+        print("ERROR: item already in dictionary. Item ({0}) can be found in key ({1}) index ({2})".format(item, keyName, index))
     # TODO: Use the checkItem function to see if the specified 'item' already exists in the dictionary
     # of lists. If the item is not in the Dictionary of Lists, add it to the list specified by the 'toList'
     # variable. If the item is already in the Dictionary of Lists, print an error message specifying:
@@ -91,13 +96,22 @@ def addItem(item, toList, todoList):
 
     return todoList
 
-def deleteItem(item, todoList):
+def deleteItem(item, todoList): #Done
     """This function allows the user to delete an item in the todoList data structure.
 
     :param String item: The String to search for in each list.
     :param Dictionary of Lists todoList: A dictionary whose keys contain the various categories the user can access. The values are lists the user can modify.
     :return Boolean, Dictionary of Lists: This function returns True/ False depending on whether the item was found, and the modified Dictionary of Lists data structure.
     """
+
+    itemFound, keyName, index = checkItem(item, todoList)
+    if itemFound == True:
+        for keys in todoList:
+            if item in todoList[keys]:
+                todoList[keys].remove(item)
+    if itemFound == False:
+        print("ERROR: {} is not in any of your lists".format(item))
+    
     # TODO: Use the checkItem function to see if the specified 'item' already exists in the dictionary
     # of lists. If the item is already in the Dictionary of Lists, delete that item. If the item is not
     # in the Dictionary of Lists, print an error message specifying:
@@ -114,6 +128,9 @@ def moveItem(item, toList, todoList):
     :param Dictionary of Lists todoList: A dictionary whose keys contain the various categories the user can access. The values are lists the user can modify.
     :return Dictionary of Lists: This function returns the modified Dictionary of Lists data structure.
     """
+    itemFound, todoList = deleteItem(item, todoList)
+    if itemFound == True:
+        addItem(item, toList, todoList)
     # TODO: Use the deleteItem function to search for/ delete the specified item. Use the itemFound boolean
     # it returns to determine if the item was found. If it was, use the addItem function to add the item to  
     # the specified toList key.
@@ -233,7 +250,6 @@ def main():
 # if __name__ == "__main__":
 #     main()
 
-dict1 = {'A': [1, 2, 3], 'B':[2, 5]}
+d1 = {"spencer": ["pog", "dec", "lights"], "droege":["goat", "short", "fun"]}
 
-x,y,z = checkItem(2,dict1)
-print(x,y,z)
+
