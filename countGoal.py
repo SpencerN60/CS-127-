@@ -1,13 +1,18 @@
 
-
 def countDownGoal(n,goal):
-    while n >= goal:
-        print(n)
-        n -= 1
+
+    if n < goal:
+        return
+    countDownGoal(n,goal+1)
+    print(goal)
 
 
-def main():
-    n = int(input("Pick a starting number"))
-    goal = int(input("Pick a goal"))
-    countDownGoal(n,goal)
 
+
+def countDownGoal2(n,goal):
+    if n < goal:
+        return
+    print(n)
+    countDownGoal(n-1,goal)
+
+countDownGoal2(7,1)
