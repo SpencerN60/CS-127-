@@ -127,4 +127,5 @@ def main():
         print(keys, ": ", finalDict[keys])
     
 
-main()
+if __name__ == "__main__":
+    main()

@@ -15,4 +15,12 @@ def countDownGoal2(n,goal):
     print(n)
     countDownGoal(n-1,goal)
 
-countDownGoal2(7,1)
+def main():
+    n = int(input("What number would you like to start at: "))
+    goal = int(input("What is your goal number: "))
+    countDownGoal(n,goal)
+    print("----------------------")
+    countDownGoal2(n,goal)
+
+if __name__ == "__main__":
+    main()
